@@ -1,0 +1,64 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue ABM</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<style>
+    li.fav{
+        color: rgb(103, 13, 177);
+        border: 2px solid  rgb(230, 68, 4);
+        background-color: pink;
+    }
+</style>
+<body>
+
+    <h1>
+        ABDULLAH BIN MASOOD
+    </h1>
+
+    <div id="app">
+       <div v-if="flag">
+        <p>{{title}}</p>
+        <h4>{{company}}</h4>
+        <span>My age is: <span style="font-weight: bold; font-size:x-large;">{{age}}</span></span>
+
+            <button v-on:click="age++">Increase Age</button>
+            <button v-on:click="age--">Decrease Age</button>
+           <br/>
+            <a href="#" @click="changeTitle('Developer Associate')">Change Title</a>
+        </div>
+
+            <div style="margin-top: 5%;">
+                <button @click="showBio">
+                    <span v-if="!flag">Show</span>
+                    <span v-else="flag">Hide</span>
+                </button>
+            </div>
+
+            <div v-if="flag" class="container" >
+                <h1>Books Data:</h1>
+                <br/>
+                <br/>
+                <br/>
+                <ul>
+                    <li v-for="book in filteredBooks" class=" card" style="flex:auto; width:50%" :class={fav:book.isFav} @click="setFavourite(book)" >
+                        <div style="color:rgb(33, 85, 199);">
+                           <h3>Book Title:{{book.bookTitle}}</h3>
+                           <p>Written By:{{book.author}}</p>
+                           <img :src="book.img" alt="book.bookTitle">
+                            
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+   
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
